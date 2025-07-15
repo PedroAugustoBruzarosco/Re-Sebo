@@ -1,0 +1,88 @@
+.button {
+  border: 1.5px solid white;
+  padding: 0.4rem 0.5rem;
+  font-size: 140%;
+  color: white;
+  text-decoration: none;
+  border-radius: 0.3rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+  background-color: white;
+  color: #2D3142;
+  border: 1.5px solid #2D3142;
+}
+
+.button-inverse {
+  border: 1.5px solid #2D3142;
+  padding: 0.4rem 0.5rem;
+  font-size: 140%;
+  color: #2D3142;
+  text-decoration: none;
+  border-radius: 0.3rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button-inverse:hover {
+  background-color: #2D3142;
+  color: white;
+  border: 1.5px solid white;
+}
+
+.button-secondary {
+  padding: 0.5% 0.7%;
+  font-size: 140%;
+  color: #2D3142;
+  text-decoration: none;
+  border-radius: 0.6rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #2D3142;
+  color: #fff;
+  border: none;
+}
+
+.button-secondary:hover {
+  background-color: white;
+  color: #2D3142;
+  border: 2px solid #2D3142;
+}
+
+.list {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: fit-content;
+}
+
+.icon {
+  width: 5vw;
+}
+
+label {
+  width: 100%;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+input {
+  width: 100%;
+  padding: 0.5% 0.75%;
+  border: 1px solid white;
+  height: 2rem;
+  box-shadow: 0 1px 4px gray;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5%;
+  background-color: #2D3142;
+}
