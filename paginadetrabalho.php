@@ -1,4 +1,5 @@
 <?php
+require_once "autoload.php";
 $consultaLivros = pg_query(Connection::getInstance(), "SELECT nome, ano, autor, qtd FROM livros ORDER BY nome");
 $consultaDiscos = pg_query(Connection::getInstance(), "SELECT nome, ano, autor, qtd FROM discos ORDER BY nome");
 ?>

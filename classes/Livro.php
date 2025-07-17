@@ -63,10 +63,10 @@ class Livro
     $sql = "UPDATE livros SET nome = $1, autor = $2, ano = $3, qtd = $4 WHERE id = $5";
     $resultado = pg_query_params(Connection::getInstance(), $sql, [$this->nome, $this->autor, $this->ano, $this->qtd, $this->id]);
 
-    if ($resultado) {
-      $_SESSION['sucesso'] = "Livro atualizado com sucesso.";
-    } else {
+    if (!$resultado) {
       $_SESSION['erro'] = "Erro ao atualizar o livro.";
+    } else {
+      $_SESSION['erro'] = null;
     }
 
     header("Location: paginadetrabalho.php");

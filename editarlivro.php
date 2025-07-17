@@ -1,4 +1,5 @@
 <?php
+require_once "autoload.php";
 $id = intval($_GET['id']);
 $livro = Livro::getById($id);
 ?>

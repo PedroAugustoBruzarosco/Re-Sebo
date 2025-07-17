@@ -1,9 +1,8 @@
 <?php
-include_once 'livro.php';
+require_once "autoload.php";
 
 $livro = Livro::fromPost($_POST);
 if ($livro) {
     $livro->atualizar();
 }
-
-exit;
+header("Location: editarlivro.php?id=" . $_POST['id']);
