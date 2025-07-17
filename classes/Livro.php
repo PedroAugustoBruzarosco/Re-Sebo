@@ -19,26 +19,6 @@ class Livro
     $livro->ano = intval($post['ano']);
     $livro->qtd = intval($post['qtd']);
 
-    if (trim($livro->nome) === "") {
-      $_SESSION['erro'] = "O campo Nome não pode estar vazio.";
-      return null;
-    }
-
-    if (trim($livro->autor) === "") {
-      $_SESSION['erro'] = "O campo Autor não pode estar vazio.";
-      return null;
-    }
-
-    if ($livro->ano <= 0) {
-      $_SESSION['erro'] = "O Ano deve ser maior que zero.";
-      return null;
-    }
-
-    if ($livro->qtd < 0) {
-      $_SESSION['erro'] = "A Quantidade não pode ser negativa.";
-      return null;
-    }
-
     return $livro;
   }
 
