@@ -13,7 +13,9 @@ class Livro
   {
     $livro = new Livro();
 
-    $livro->id = intval($post['id']);
+    if (isset($livro->id)) {
+      $livro->id = intval($post['id']);
+    }
     $livro->nome = trim($post['nome']);
     $livro->autor = trim($post['autor']);
     $livro->ano = intval($post['ano']);
@@ -37,18 +39,31 @@ class Livro
     return $livro;
   }
 
+  public function  salvar()
+  {
+    $sql = "INSERT INTO livros (nome, autor, ano, qtd) VALUES ($1, $2, $3, $4)";
+    $resultado = pg_query_params(Connection::getInstance(), $sql, array($this->nome, $this->autor, $this->ano, $this->qtd));
+
+    if ($resultado) {
+      $_SESSION['erro'] = null;
+      header("Location: paginadetrabalho.php");
+    } else {
+      $_SESSION['erro'] = "Erro ao salvar livro.";
+      header("Location: adicionarlivro.php");
+    }
+  }
+
   public function atualizar()
   {
-
     $sql = "UPDATE livros SET nome = $1, autor = $2, ano = $3, qtd = $4 WHERE id = $5";
     $resultado = pg_query_params(Connection::getInstance(), $sql, [$this->nome, $this->autor, $this->ano, $this->qtd, $this->id]);
 
-    if (!$resultado) {
-      $_SESSION['erro'] = "Erro ao atualizar o livro.";
-    } else {
+    if ($resultado) {
       $_SESSION['erro'] = null;
+      header("Location: paginadetrabalho.php");
+    } else {
+      $_SESSION['erro'] = "Erro ao atualizar o livro.";
+      header("Location: editarlivro.php?id=" . $this->id);
     }
-
-    header("Location: paginadetrabalho.php");
   }
 }
