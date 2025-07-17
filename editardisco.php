@@ -5,10 +5,12 @@ $disco = pg_fetch_assoc(pg_query_params($conn, "SELECT * FROM discos WHERE id = 
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <title>Editar Disco</title>
 </head>
+
 <body>
   <form action="salvaredicaodisco.php" method="POST">
     <input type="hidden" name="id" value="<?= $disco['id'] ?>">
@@ -20,4 +22,5 @@ $disco = pg_fetch_assoc(pg_query_params($conn, "SELECT * FROM discos WHERE id = 
     <a href="paginadetrabalho.php">Cancelar</a>
   </form>
 </body>
+
 </html>
