@@ -1,3 +1,22 @@
+:root {
+  --primary: 68, 200, 68;
+  --primary-shade: 48, 160, 48;
+
+  --bs-primary-rgb: var(--primary);
+
+  .btn-primary {
+    --bs-btn-bg: rgb(var(--primary));
+    --bs-btn-border-color: rgb(var(--primary));
+
+    --bs-btn-hover-bg: rgb(var(--primary-shade));
+    --bs-btn-hover-border-color: rgb(var(--primary-shade));
+
+    --bs-btn-active-bg: rgb(var(--primary));
+    --bs-btn-active-border-color: rgb(var(--primary))
+  }
+
+}
+
 .button {
   border: 1.5px solid white;
   padding: 0.4rem 0.5rem;
@@ -59,24 +78,6 @@
 
 .icon {
   width: 5vw;
-}
-
-label {
-  width: 100%;
-  font-weight: 600;
-  font-size: 1.2rem;
-  text-align: left;
-}
-
-input {
-  width: 100%;
-  padding: 0.5% 0.75%;
-  border: 1px solid white;
-  height: 2rem;
-  box-shadow: 0 1px 4px gray;
-  border-radius: 8px;
-  transition: border-color 0.3s ease;
-  margin-bottom: 1rem;
 }
 
 header {
