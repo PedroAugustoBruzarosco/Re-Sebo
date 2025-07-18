@@ -15,75 +15,16 @@
     --bs-btn-active-border-color: rgb(var(--primary))
   }
 
-}
+  .btn-secondary {
+    --bs-btn-bg: white;
+    --bs-btn-color: rgb(var(--primary));
+    --bs-btn-border-color: rgb(var(--primary));
 
-.button {
-  border: 1.5px solid white;
-  padding: 0.4rem 0.5rem;
-  font-size: 140%;
-  color: white;
-  text-decoration: none;
-  border-radius: 0.3rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+    --bs-btn-hover-bg: rgb(var(--primary-shade));
+    --bs-btn-hover-border-color: rgb(var(--primary-shade));
 
-.button:hover {
-  background-color: white;
-  color: #2D3142;
-  border: 1.5px solid #2D3142;
-}
+    --bs-btn-active-bg: rgb(var(--primary));
+    --bs-btn-active-border-color: rgb(var(--primary))
+  }
 
-.button-inverse {
-  border: 1.5px solid #2D3142;
-  padding: 0.4rem 0.5rem;
-  font-size: 140%;
-  color: #2D3142;
-  text-decoration: none;
-  border-radius: 0.3rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.button-inverse:hover {
-  background-color: #2D3142;
-  color: white;
-  border: 1.5px solid white;
-}
-
-.button-secondary {
-  padding: 0.5% 0.7%;
-  font-size: 140%;
-  color: #2D3142;
-  text-decoration: none;
-  border-radius: 0.6rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  background-color: #2D3142;
-  color: #fff;
-  border: none;
-}
-
-.button-secondary:hover {
-  background-color: white;
-  color: #2D3142;
-  border: 2px solid #2D3142;
-}
-
-.list {
-  display: grid;
-  grid-auto-flow: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  width: fit-content;
-}
-
-.icon {
-  width: 5vw;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.5%;
-  background-color: #2D3142;
 }

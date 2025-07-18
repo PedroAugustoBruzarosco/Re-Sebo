@@ -20,8 +20,8 @@
 
         <?php if (isset($_SESSION['erro'])): ?>
             <div class="alert alert-danger py-2" role="alert">
-                <?= htmlspecialchars($_SESSION['erro']);
-                unset($_SESSION['erro']); ?>
+                <?= htmlspecialchars($_SESSION['erro']); ?>
+                <?php unset($_SESSION['erro']); ?>
             </div>
         <?php endif; ?>
 
@@ -51,7 +51,6 @@
 
         <div class="d-flex justify-content-between">
             <a href="paginainicial.php" class="small">Página inicial</a>
-            <a href="esqueceusenha.php" class="small">Esqueceu a senha?</a>
         </div>
     </div>
 
