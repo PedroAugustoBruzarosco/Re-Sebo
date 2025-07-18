@@ -42,7 +42,7 @@ require_once "autoload.php";
                     <th>Ano</th>
                     <th>Autor</th>
                     <th>Qtd</th>
-                    <th>Ações</th>
+                    <th style="width: 120px; white-space: nowrap;">Ações</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -52,7 +52,7 @@ require_once "autoload.php";
                       <td><?= $livro['ano'] ?></td>
                       <td><?= $livro['autor'] ?></td>
                       <td><?= $livro['qtd'] ?></td>
-                      <td>
+                      <td style="white-space: nowrap; display: flex; gap: 0.5rem;">
                         <a href="editarlivro.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-secondary">
                           <i class="bi bi-pencil"></i> Editar
                         </a>
@@ -86,7 +86,7 @@ require_once "autoload.php";
                     <th>Ano</th>
                     <th>Autor</th>
                     <th>Qtd</th>
-                    <th>Ações</th>
+                    <th style="width: 120px; white-space: nowrap;">Ações</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -96,8 +96,7 @@ require_once "autoload.php";
                       <td><?= $disco['ano'] ?></td>
                       <td><?= $disco['autor'] ?></td>
                       <td><?= $disco['qtd'] ?></td>
-                      <td>
-
+                      <td style="white-space: nowrap; display: flex; gap: 0.5rem;">
                         <a href="editardisco.php?id=<?= $disco['id'] ?>" class="btn btn-sm btn-secondary">
                           <i class="bi bi-pencil"></i> Editar
                         </a>
