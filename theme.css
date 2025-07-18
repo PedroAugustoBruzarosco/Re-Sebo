@@ -4,32 +4,63 @@
   --primary-shade: 48, 160, 48;
 
   --bs-primary-rgb: var(--primary);
+}
 
-  .btn-primary {
-    --bs-btn-bg: rgb(var(--primary));
-    --bs-btn-border-color: rgb(var(--primary));
+.btn-primary {
+  --bs-btn-bg: rgb(var(--primary));
+  --bs-btn-border-color: rgb(var(--primary));
+  --bs-btn-hover-bg: rgb(var(--primary-shade));
+  --bs-btn-hover-border-color: rgb(var(--primary-shade));
+  --bs-btn-active-bg: rgb(var(--primary));
+  --bs-btn-active-border-color: rgb(var(--primary));
+}
 
-    --bs-btn-hover-bg: rgb(var(--primary-shade));
-    --bs-btn-hover-border-color: rgb(var(--primary-shade));
+.btn-secondary {
+  --bs-btn-bg: white;
+  --bs-btn-color: rgb(var(--primary));
+  --bs-btn-border-color: rgb(var(--primary));
+  --bs-btn-hover-bg: rgb(var(--primary-shade));
+  --bs-btn-hover-border-color: rgb(var(--primary-shade));
+  --bs-btn-active-bg: rgb(var(--primary));
+  --bs-btn-active-border-color: rgb(var(--primary));
+}
 
-    --bs-btn-active-bg: rgb(var(--primary));
-    --bs-btn-active-border-color: rgb(var(--primary))
+.table-primary {
+  --bs-table-bg: rgb(var(--primary-light));
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(13, 110, 253, 0.05);
+}
+
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
-  .btn-secondary {
-    --bs-btn-bg: white;
-    --bs-btn-color: rgb(var(--primary));
-    --bs-btn-border-color: rgb(var(--primary));
+.card-title {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
 
-    --bs-btn-hover-bg: rgb(var(--primary-shade));
-    --bs-btn-hover-border-color: rgb(var(--primary-shade));
+.card-title::before {
+  margin-right: 8px;
+}
 
-    --bs-btn-active-bg: rgb(var(--primary));
-    --bs-btn-active-border-color: rgb(var(--primary))
-  }
-
-  .table-primary {
-    --bs-table-bg: rgb(var(--primary-light));
-  }
-
+footer {
+  background: #0b5ed7;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
 }

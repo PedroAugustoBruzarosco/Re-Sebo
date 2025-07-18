@@ -8,6 +8,7 @@ require_once "autoload.php";
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
   <link rel="icon" href="assets/book.png">
   <link rel="stylesheet" href="theme.css">
   <title>Re-Sebo</title>
@@ -52,10 +53,15 @@ require_once "autoload.php";
                       <td><?= $livro['autor'] ?></td>
                       <td><?= $livro['qtd'] ?></td>
                       <td>
-                        <a href="editarlivro.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-secondary">Editar</a>
+                        <a href="editarlivro.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-secondary">
+                          <i class="bi bi-pencil"></i> Editar
+                        </a>
+
                         <a href="deletar.php?tipo=livro&id=<?= $livro['id'] ?>"
                           class="btn btn-sm btn-danger"
-                          onclick="return confirm('Tem certeza que deseja deletar este livro?')">Deletar</a>
+                          onclick="return confirm('Tem certeza que deseja deletar este livro?')">
+                          <i class="bi bi-trash"></i> Deletar
+                        </a>
                       </td>
                     </tr>
                   <?php endforeach; ?>
@@ -91,10 +97,15 @@ require_once "autoload.php";
                       <td><?= $disco['autor'] ?></td>
                       <td><?= $disco['qtd'] ?></td>
                       <td>
-                        <a href="editardisco.php?id=<?= $disco['id'] ?>" class="btn btn-sm btn-secondary">Editar</a>
+
+                        <a href="editardisco.php?id=<?= $disco['id'] ?>" class="btn btn-sm btn-secondary">
+                          <i class="bi bi-pencil"></i> Editar
+                        </a>
                         <a href="deletar.php?tipo=disco&id=<?= $disco['id'] ?>"
                           class="btn btn-sm btn-danger"
-                          onclick="return confirm('Tem certeza que deseja deletar este disco?')">Deletar</a>
+                          onclick="return confirm('Tem certeza que deseja deletar este disco?')">
+                          <i class="bi bi-trash"></i> Deletar
+                        </a>
                       </td>
                     </tr>
                   <?php endforeach; ?>
@@ -133,17 +144,5 @@ require_once "autoload.php";
     filtrarTabela("buscaDisco", "tabelaDiscos");
   </script>
 </body>
-
-</html>
-
-</html>
-
-</html>
-
-</html>
-
-</html>
-
-</html>
 
 </html>
