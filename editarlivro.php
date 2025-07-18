@@ -20,36 +20,36 @@ $livro = Livro::getById($id);
     <h2 class="text-center mb-4">Editar Livro</h2>
 
     <form action="salvaredicaolivro.php" method="POST">
-      <input type="hidden" name="id" value="<?= htmlspecialchars($livro->id) ?>">
+      <input type="hidden" name="id" value="<?= $livro->id ?>">
 
       <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
         <input type="text" class="form-control" id="nome" name="nome"
-          value="<?= htmlspecialchars($livro->nome) ?>" required>
+          value="<?= $livro->nome ?>" required>
       </div>
 
       <div class="mb-3">
         <label for="autor" class="form-label">Autor</label>
         <input type="text" class="form-control" id="autor" name="autor"
-          value="<?= htmlspecialchars($livro->autor) ?>" required>
+          value="<?= $livro->autor ?>" required>
       </div>
 
       <div class="mb-3">
         <label for="ano" class="form-label">Ano</label>
         <input type="number" class="form-control" id="ano" name="ano"
-          value="<?= htmlspecialchars($livro->ano) ?>" min="1" required>
+          value="<?= $livro->ano ?>" min="1" required>
       </div>
 
       <div class="mb-3">
         <label for="qtd" class="form-label">Quantidade</label>
         <input type="number" class="form-control" id="qtd" name="qtd"
-          value="<?= htmlspecialchars($livro->qtd) ?>" min="0" required>
+          value="<?= $livro->qtd ?>" min="0" required>
       </div>
 
       <?php if (!empty($_SESSION['erro'])): ?>
         <div class="alert alert-danger mb-3">
-          <?= $_SESSION['erro'];
-          unset($_SESSION['erro']); ?>
+          <?= $_SESSION['erro']; ?>
+          <?php unset($_SESSION['erro']); ?>
         </div>
       <?php endif; ?>
 

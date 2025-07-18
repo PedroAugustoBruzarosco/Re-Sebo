@@ -40,8 +40,8 @@ require_once "autoload.php";
       <?php if (!empty($_SESSION['erro'])): ?>
         <div class="col-12">
           <div class="alert alert-danger">
-            <?= $_SESSION['erro'];
-            unset($_SESSION['erro']); ?>
+            <?= $_SESSION['erro']; ?>
+            <?php unset($_SESSION['erro']); ?>
           </div>
         </div>
       <?php endif; ?>

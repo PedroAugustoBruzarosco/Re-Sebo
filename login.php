@@ -28,7 +28,7 @@ require_once "autoload.php"; ?>
             </div>
             <div class="mb-3">
                 <label for="senha" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="senha" name="senha" required>
+                <input type="password" class="form-control" id="senha" name="senha" required minlength="6">
             </div>
 
             <?php if (isset($_SESSION['erro'])): ?>

@@ -20,7 +20,7 @@
 
         <?php if (isset($_SESSION['erro'])): ?>
             <div class="alert alert-danger py-2" role="alert">
-                <?= htmlspecialchars($_SESSION['erro']); ?>
+                <?= $_SESSION['erro']; ?>
                 <?php unset($_SESSION['erro']); ?>
             </div>
         <?php endif; ?>
@@ -36,11 +36,13 @@
             </div>
             <div class="mb-3">
                 <label for="cpf" class="form-label">CPF</label>
-                <input type="text" class="form-control" id="cpf" name="cpf" required>
+                <input type="text" class="form-control" name="cpf" id="cpf" placeholder="000.000.000-00" required
+                    pattern="(\d{3}\.\d{3}\.\d{3}-\d{2}"
+                    title="Digite um CPF válido no formato 000.000.000-00">
             </div>
             <div class="mb-3">
                 <label for="senha" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="senha" name="senha" required>
+                <input type="password" class="form-control" id="senha" name="senha" required minlengt="6">
             </div>
             <div class="mb-3">
                 <label for="confirmarsenha" class="form-label">Confirmar senha</label>

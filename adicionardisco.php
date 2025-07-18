@@ -23,18 +23,18 @@
       </div>
       <div class="mb-3">
         <label for="ano" class="form-label">Ano</label>
-        <input type="number" class="form-control" name="ano" id="ano" required>
+        <input type="number" class="form-control" name="ano" id="ano" required min="1">
       </div>
       <div class="mb-3">
         <label for="qtd" class="form-label">Quantidade</label>
-        <input type="number" class="form-control" name="qtd" id="qtd" required>
+        <input type="number" class="form-control" name="qtd" id="qtd" required min="0">
       </div>
 
       <?php if (!empty($_SESSION['erro'])): ?>
         <div class="col-12">
           <div class="alert alert-danger">
-            <?= $_SESSION['erro'];
-            unset($_SESSION['erro']); ?>
+            <?= $_SESSION['erro']; ?>
+            <?php unset($_SESSION['erro']); ?>
           </div>
         </div>
       <?php endif; ?>

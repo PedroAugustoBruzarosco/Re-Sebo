@@ -18,30 +18,30 @@ $disco = Disco::getById($id);
   <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
     <h2 class="text-center mb-4">Editar Disco</h2>
     <form action="salvaredicaodisco.php" method="POST">
-      <input type="hidden" name="id" value="<?= htmlspecialchars($disco->id) ?>">
+      <input type="hidden" name="id" value="<?= $disco->id ?>">
 
       <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
         <input type="text" class="form-control" id="nome" name="nome"
-          value="<?= htmlspecialchars($disco->nome) ?>" required>
+          value="<?= $disco->nome ?>" required>
       </div>
 
       <div class="mb-3">
         <label for="autor" class="form-label">Autor</label>
         <input type="text" class="form-control" id="autor" name="autor"
-          value="<?= htmlspecialchars($disco->autor) ?>" required>
+          value="<?= $disco->autor ?>" required>
       </div>
 
       <div class="mb-3">
         <label for="ano" class="form-label">Ano</label>
         <input type="number" class="form-control" id="ano" name="ano"
-          value="<?= htmlspecialchars($disco->ano) ?>" required>
+          value="<?= $disco->ano ?>" required min="1">
       </div>
 
       <div class="mb-3">
         <label for="qtd" class="form-label">Quantidade</label>
         <input type="number" class="form-control" id="qtd" name="qtd"
-          value="<?= htmlspecialchars($disco->qtd) ?>" required>
+          value="<?= $disco->qtd ?>" required min="0">
       </div>
 
       <button type="submit" class="btn btn-primary w-100 mb-2">Salvar</button>
