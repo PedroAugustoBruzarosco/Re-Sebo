@@ -54,13 +54,13 @@ require_once "autoload.php";
                       <td><?= $livro['qtd'] ?></td>
                       <td style="white-space: nowrap; display: flex; gap: 0.5rem;">
                         <a href="editarlivro.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-secondary">
-                          <i class="bi bi-pencil"></i> Editar
+                          <i class="bi bi-pencil"></i> <span class="btn-text">Editar</span>
                         </a>
 
                         <a href="deletar.php?tipo=livro&id=<?= $livro['id'] ?>"
                           class="btn btn-sm btn-danger"
                           onclick="return confirm('Tem certeza que deseja deletar este livro?')">
-                          <i class="bi bi-trash"></i> Deletar
+                          <i class="bi bi-trash"></i> <span class="btn-text">Deletar</span>
                         </a>
                       </td>
                     </tr>
@@ -98,12 +98,12 @@ require_once "autoload.php";
                       <td><?= $disco['qtd'] ?></td>
                       <td style="white-space: nowrap; display: flex; gap: 0.5rem;">
                         <a href="editardisco.php?id=<?= $disco['id'] ?>" class="btn btn-sm btn-secondary">
-                          <i class="bi bi-pencil"></i> Editar
+                          <i class="bi bi-pencil"></i> <span class="btn-text">Editar</span>
                         </a>
                         <a href="deletar.php?tipo=disco&id=<?= $disco['id'] ?>"
                           class="btn btn-sm btn-danger"
                           onclick="return confirm('Tem certeza que deseja deletar este disco?')">
-                          <i class="bi bi-trash"></i> Deletar
+                          <i class="bi bi-trash"></i> <span class="btn-text">Deletar</span>
                         </a>
                       </td>
                     </tr>

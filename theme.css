@@ -25,6 +25,16 @@
   --bs-btn-active-border-color: rgb(var(--primary));
 }
 
+.btn-text {
+  display: inline;
+}
+
+@media (max-width: 575.98px) {
+  .btn-text {
+    display: none;
+  }
+}
+
 .table-primary {
   --bs-table-bg: rgb(var(--primary-light));
 }
