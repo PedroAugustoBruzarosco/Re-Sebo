@@ -1,17 +1,5 @@
 <?php
 require_once "autoload.php";
-$consultaLivros = pg_query(Connection::getInstance(), "SELECT nome, ano, autor, qtd FROM livros ORDER BY nome");
-$consultaDiscos = pg_query(Connection::getInstance(), "SELECT nome, ano, autor, qtd FROM discos ORDER BY nome");
-?>
-
-<?php
-$filtroLivro = isset($_GET['buscalivro']) ? trim($_GET['buscalivro']) : '';
-$sqlLivros = "SELECT id, nome, ano, autor, qtd FROM livros WHERE nome ILIKE $1 ORDER BY nome";
-$consultaLivros = pg_query_params(Connection::getInstance(), $sqlLivros, array('%' . $filtroLivro . '%'));
-
-$filtroDisco = isset($_GET['buscadisco']) ? trim($_GET['buscadisco']) : '';
-$sqlDiscos = "SELECT id, nome, ano, autor, qtd FROM discos WHERE nome ILIKE $1 ORDER BY nome";
-$consultaDiscos = pg_query_params(Connection::getInstance(), $sqlDiscos, array('%' . $filtroDisco . '%'));
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -25,9 +13,9 @@ $consultaDiscos = pg_query_params(Connection::getInstance(), $sqlDiscos, array('
   <title>Re-Sebo</title>
 </head>
 
-<body class="bg-light">
+<body class="d-flex flex-column min-vh-100 bg-light">
 
-  <header class="navbar navbar-dark bg-primary p-3">
+  <header class="navbar bg-primary p-3">
     <div class="container d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center">
         <img src="assets/book.png" alt="Logo" style="width: 40px;" class="me-2">
@@ -37,21 +25,16 @@ $consultaDiscos = pg_query_params(Connection::getInstance(), $sqlDiscos, array('
     </div>
   </header>
 
-  <main class="container my-4">
+  <main class="p-5">
     <div class="row g-4">
 
-      <!-- Estoque de Livros -->
       <div class="col-12 col-lg-6">
         <div class="card shadow">
           <div class="card-body">
             <h3 class="card-title mb-3">Estoque de Livros</h3>
-            <form class="d-flex mb-3" method="GET">
-              <input type="text" class="form-control me-2" name="buscalivro"
-                placeholder="Pesquisar livro" value="<?= htmlspecialchars($filtroLivro) ?>">
-              <button class="btn btn-primary" type="submit">Buscar</button>
-            </form>
+            <input type="text" class="form-control mb-3" id="buscaLivro" placeholder="Pesquisar livro">
             <div class="table-responsive">
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover" id="tabelaLivros">
                 <thead class="table-primary">
                   <tr>
                     <th>Nome</th>
@@ -62,12 +45,12 @@ $consultaDiscos = pg_query_params(Connection::getInstance(), $sqlDiscos, array('
                   </tr>
                 </thead>
                 <tbody>
-                  <?php while ($livro = pg_fetch_assoc($consultaLivros)): ?>
+                  <?php foreach (Livro::listar() as $livro): ?>
                     <tr>
-                      <td><?= htmlspecialchars($livro['nome']) ?></td>
-                      <td><?= htmlspecialchars($livro['ano']) ?></td>
-                      <td><?= htmlspecialchars($livro['autor']) ?></td>
-                      <td><?= htmlspecialchars($livro['qtd']) ?></td>
+                      <td><?= $livro['nome'] ?></td>
+                      <td><?= $livro['ano'] ?></td>
+                      <td><?= $livro['autor'] ?></td>
+                      <td><?= $livro['qtd'] ?></td>
                       <td>
                         <a href="editarlivro.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-secondary">Editar</a>
                         <a href="deletar.php?tipo=livro&id=<?= $livro['id'] ?>"
@@ -75,7 +58,7 @@ $consultaDiscos = pg_query_params(Connection::getInstance(), $sqlDiscos, array('
                           onclick="return confirm('Tem certeza que deseja deletar este livro?')">Deletar</a>
                       </td>
                     </tr>
-                  <?php endwhile; ?>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
             </div>
@@ -84,18 +67,13 @@ $consultaDiscos = pg_query_params(Connection::getInstance(), $sqlDiscos, array('
         </div>
       </div>
 
-      <!-- Estoque de Discos -->
       <div class="col-12 col-lg-6">
         <div class="card shadow">
           <div class="card-body">
             <h3 class="card-title mb-3">Estoque de Discos</h3>
-            <form class="d-flex mb-3" method="GET">
-              <input type="text" class="form-control me-2" name="buscadisco"
-                placeholder="Pesquisar disco" value="<?= htmlspecialchars($filtroDisco) ?>">
-              <button class="btn btn-primary" type="submit">Buscar</button>
-            </form>
+            <input type="text" class="form-control mb-3" id="buscaDisco" placeholder="Pesquisar disco">
             <div class="table-responsive">
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover" id="tabelaDiscos">
                 <thead class="table-primary">
                   <tr>
                     <th>Nome</th>
@@ -106,20 +84,20 @@ $consultaDiscos = pg_query_params(Connection::getInstance(), $sqlDiscos, array('
                   </tr>
                 </thead>
                 <tbody>
-                  <?php while ($disco = pg_fetch_assoc($consultaDiscos)): ?>
+                  <?php foreach (Disco::listar() as $disco): ?>
                     <tr>
-                      <td><?= htmlspecialchars($disco['nome']) ?></td>
-                      <td><?= htmlspecialchars($disco['ano']) ?></td>
-                      <td><?= htmlspecialchars($disco['autor']) ?></td>
-                      <td><?= htmlspecialchars($disco['qtd']) ?></td>
+                      <td><?= $disco['nome'] ?></td>
+                      <td><?= $disco['ano'] ?></td>
+                      <td><?= $disco['autor'] ?></td>
+                      <td><?= $disco['qtd'] ?></td>
                       <td>
-                        <a href="editardisco.php?id=<?= $disco['id'] ?>" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="editardisco.php?id=<?= $disco['id'] ?>" class="btn btn-sm btn-secondary">Editar</a>
                         <a href="deletar.php?tipo=disco&id=<?= $disco['id'] ?>"
                           class="btn btn-sm btn-danger"
                           onclick="return confirm('Tem certeza que deseja deletar este disco?')">Deletar</a>
                       </td>
                     </tr>
-                  <?php endwhile; ?>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
             </div>
@@ -127,6 +105,7 @@ $consultaDiscos = pg_query_params(Connection::getInstance(), $sqlDiscos, array('
           </div>
         </div>
       </div>
+
     </div>
   </main>
 
@@ -135,6 +114,36 @@ $consultaDiscos = pg_query_params(Connection::getInstance(), $sqlDiscos, array('
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function filtrarTabela(inputId, tabelaId) {
+      const input = document.getElementById(inputId);
+      const tabela = document.getElementById(tabelaId).querySelectorAll("tbody tr");
+
+      input.addEventListener("input", () => {
+        const termo = input.value.toLowerCase();
+        tabela.forEach(tr => {
+          const texto = tr.textContent.toLowerCase();
+          tr.style.display = texto.includes(termo) ? "" : "none";
+        });
+      });
+    }
+
+    filtrarTabela("buscaLivro", "tabelaLivros");
+    filtrarTabela("buscaDisco", "tabelaDiscos");
+  </script>
 </body>
+
+</html>
+
+</html>
+
+</html>
+
+</html>
+
+</html>
+
+</html>
 
 </html>

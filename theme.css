@@ -1,5 +1,6 @@
 :root {
   --primary: 68, 200, 68;
+  --primary-light: 200, 255, 200;
   --primary-shade: 48, 160, 48;
 
   --bs-primary-rgb: var(--primary);
@@ -25,6 +26,10 @@
 
     --bs-btn-active-bg: rgb(var(--primary));
     --bs-btn-active-border-color: rgb(var(--primary))
+  }
+
+  .table-primary {
+    --bs-table-bg: rgb(var(--primary-light));
   }
 
 }

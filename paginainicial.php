@@ -23,7 +23,7 @@
     </div>
   </header>
 
-  <main class="flex-grow-1">
+  <main>
     <div class="container text-center mt-5">
       <p class="fs-4">
         Bem-vindo ao sistema de gerenciamento do <strong>Re-Sebo</strong>

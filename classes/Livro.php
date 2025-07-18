@@ -39,6 +39,16 @@ class Livro
     return $livro;
   }
 
+  public static function listar()
+  {
+    $resultado = pg_query(
+      Connection::getInstance(),
+      "SELECT id, nome, ano, autor, qtd FROM livros ORDER BY nome"
+    );
+
+    return pg_fetch_all($resultado) ?: [];
+  }
+
   public function  salvar()
   {
     $sql = "INSERT INTO livros (nome, autor, ano, qtd) VALUES ($1, $2, $3, $4)";

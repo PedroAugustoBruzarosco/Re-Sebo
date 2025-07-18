@@ -11,55 +11,45 @@ require_once "autoload.php";
   <link rel="stylesheet" href="theme.css">
 </head>
 
-<body class="bg-light">
+<body class="bg-light d-flex align-items-center justify-content-center vh-100">
 
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card shadow-lg">
-          <div class="card-body">
-            <h2 class="card-title text-center mb-4">Adicionar Livro</h2>
+  <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
+    <h2 class="card-title text-center mb-4">Adicionar Livro</h2>
 
-            <form action="salvalivro.php" method="POST">
-              <div class="mb-3">
-                <label for="nome" class="form-label">Nome:</label>
-                <input type="text" class="form-control" name="nome" id="nome" required>
-              </div>
+    <form action="salvalivro.php" method="POST">
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome:</label>
+        <input type="text" class="form-control" name="nome" id="nome" required>
+      </div>
 
-              <div class="mb-3">
-                <label for="autor" class="form-label">Autor:</label>
-                <input type="text" class="form-control" name="autor" id="autor" required>
-              </div>
+      <div class="mb-3">
+        <label for="autor" class="form-label">Autor:</label>
+        <input type="text" class="form-control" name="autor" id="autor" required>
+      </div>
 
-              <div class="mb-3">
-                <label for="ano" class="form-label">Ano:</label>
-                <input type="number" class="form-control" name="ano" id="ano" required min="1">
-              </div>
+      <div class="mb-3">
+        <label for="ano" class="form-label">Ano:</label>
+        <input type="number" class="form-control" name="ano" id="ano" required min="1">
+      </div>
 
-              <div class="mb-3">
-                <label for="qtd" class="form-label">Quantidade:</label>
-                <input type="number" class="form-control" name="qtd" id="qtd" required min="0">
-              </div>
+      <div class="mb-3">
+        <label for="qtd" class="form-label">Quantidade:</label>
+        <input type="number" class="form-control" name="qtd" id="qtd" required min="0">
+      </div>
 
-              <?php if (!empty($_SESSION['erro'])): ?>
-                <div class="col-12">
-                  <div class="alert alert-danger">
-                    <?= $_SESSION['erro'];
-                    unset($_SESSION['erro']); ?>
-                  </div>
-                </div>
-              <?php endif; ?>
-
-              <div class="d-flex justify-content-between">
-                <a href="paginadetrabalho.php" class="btn btn-secondary">Voltar</a>
-                <button type="submit" class="btn btn-primary">Salvar</button>
-              </div>
-            </form>
-
+      <?php if (!empty($_SESSION['erro'])): ?>
+        <div class="col-12">
+          <div class="alert alert-danger">
+            <?= $_SESSION['erro'];
+            unset($_SESSION['erro']); ?>
           </div>
         </div>
-      </div>
-    </div>
+      <?php endif; ?>
+
+      <button type="submit" class="btn btn-primary w-100 mb-2">Salvar</button>
+      <a href="paginadetrabalho.php" class="btn btn-secondary w-100">Voltar</a>
+    </form>
+
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
