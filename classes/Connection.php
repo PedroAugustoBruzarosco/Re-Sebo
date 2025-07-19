@@ -10,7 +10,7 @@ class Connection
   {
     if (self::$conn === null) {
 
-      self::$conn = pg_connect("host=localhost dbname=ReSebo user=postgres password=12345678");
+      self::$conn = pg_connect("host=localhost dbname=sebo user=usuario password=12345678");
 
       if (!self::$conn) {
         die("Erro ao conectar ao banco de dados PostgreSQL.");

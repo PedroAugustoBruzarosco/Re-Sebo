@@ -127,4 +127,3 @@ ALTER TABLE ONLY public.usuarios
 --
 -- PostgreSQL database dump complete
 --
-

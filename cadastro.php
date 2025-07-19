@@ -64,11 +64,11 @@
             </script>
             <div class="mb-3">
                 <label for="senha" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="senha" name="senha" required minlengt="6">
+                <input type="password" class="form-control" id="senha" name="senha" required minlength="6">
             </div>
             <div class="mb-3">
                 <label for="confirmarsenha" class="form-label">Confirmar senha</label>
-                <input type="password" class="form-control" id="confirmarsenha" name="confirmarsenha" required>
+                <input type="password" class="form-control" id="confirmarsenha" name="confirmarsenha" required minlength="6">
             </div>
             <button class="btn btn-primary w-100 mb-3" type="submit">Cadastrar</button>
         </form>
