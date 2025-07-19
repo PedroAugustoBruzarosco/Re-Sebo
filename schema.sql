@@ -46,7 +46,8 @@ CREATE TABLE public.discos (
     ano integer NOT NULL,
     qtd integer NOT NULL,
     numerofaixas integer,
-    audio bytea
+    audio bytea,
+    gravadora character varying(255)
 );
 
 
