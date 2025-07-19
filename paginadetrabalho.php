@@ -54,7 +54,8 @@ require_once "autoload.php";
                     <tr>
                       <td>
                         <?= !empty($livro['imagem'])
-                          ? '<img width=80 height=80 src="data:image/png;base64,' . base64_encode(pg_unescape_bytea($livro['imagem'])) . '">'
+                          ? '<img class="rounded zoom" width=80 height=80 
+                        src="data:image/png;base64,' . base64_encode($livro['imagem']) . '">'
                           : ''
                         ?>
                       </td>
@@ -94,21 +95,33 @@ require_once "autoload.php";
               <table class="table table-striped table-hover" id="tabelaDiscos">
                 <thead class="table-primary">
                   <tr>
+                    <th>Aúdio</th>
                     <th>Nome</th>
                     <th>Ano</th>
                     <th>Autor</th>
+                    <th>Gravadora</th>
                     <th>Qtd</th>
-                    <th style="width: 120px; white-space: nowrap;">Ações</th>
+                    <th>Núm. Faixas</th>
+                    <th>Ações</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php foreach (Disco::listar() as $disco): ?>
                     <tr>
+                      <td>
+                        <?php if ($disco['audio']): ?>
+                          <audio controls style="max-width: 100px;">
+                            <source src="data:audio/mpeg;base64,<?= base64_encode($disco['audio']) ?>" type="audio/mpeg">
+                          </audio>
+                        <?php endif; ?>
+                      </td>
                       <td><?= $disco['nome'] ?></td>
                       <td><?= $disco['ano'] ?></td>
                       <td><?= $disco['autor'] ?></td>
+                      <td><?= $disco['gravadora'] ?></td>
                       <td><?= $disco['qtd'] ?></td>
-                      <td style="white-space: nowrap; display: flex; gap: 0.5rem;">
+                      <td><?= $disco['numerofaixas'] ?></td>
+                      <td>
                         <a href="editardisco.php?id=<?= $disco['id'] ?>" class="btn btn-sm btn-secondary">
                           <i class="bi bi-pencil"></i> <span class="btn-text">Editar</span>
                         </a>

@@ -37,9 +37,31 @@
             <div class="mb-3">
                 <label for="cpf" class="form-label">CPF</label>
                 <input type="text" class="form-control" name="cpf" id="cpf" placeholder="000.000.000-00" required
-                    pattern="(\d{3}\.\d{3}\.\d{3}-\d{2}"
-                    title="Digite um CPF válido no formato 000.000.000-00">
+                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                    title="Digite um CPF válido no formato 000.000.000-00" maxlength="14">
             </div>
+
+            <script>
+                const cpfInput = document.getElementById('cpf');
+
+                cpfInput.addEventListener('input', function(e) {
+                    let value = e.target.value;
+
+                    value = value.replace(/\D/g, '');
+
+                    if (value.length > 3) {
+                        value = value.replace(/^(\d{3})(\d)/, '$1.$2');
+                    }
+                    if (value.length > 6) {
+                        value = value.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+                    }
+                    if (value.length > 9) {
+                        value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4');
+                    }
+
+                    e.target.value = value.substring(0, 14);
+                });
+            </script>
             <div class="mb-3">
                 <label for="senha" class="form-label">Senha</label>
                 <input type="password" class="form-control" id="senha" name="senha" required minlengt="6">

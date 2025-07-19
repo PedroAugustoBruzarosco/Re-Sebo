@@ -12,7 +12,7 @@
 
   <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
     <h2 class="text-center mb-4">Adicionar Disco</h2>
-    <form action="salvadisco.php" method="POST">
+    <form action="salvadisco.php" method="POST" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
         <input type="text" class="form-control" name="nome" id="nome" required>
@@ -22,12 +22,24 @@
         <input type="text" class="form-control" name="autor" id="autor" required>
       </div>
       <div class="mb-3">
+        <label for="gravadora" class="form-label">Gravadora</label>
+        <input type="text" class="form-control" name="gravadora" id="gravadora" required>
+      </div>
+      <div class="mb-3">
         <label for="ano" class="form-label">Ano</label>
         <input type="number" class="form-control" name="ano" id="ano" required min="1">
       </div>
       <div class="mb-3">
         <label for="qtd" class="form-label">Quantidade</label>
         <input type="number" class="form-control" name="qtd" id="qtd" required min="0">
+      </div>
+      <div class="mb-3">
+        <label for="numerofaixas" class="form-label">Número de Faixas</label>
+        <input type="number" class="form-control" name="numerofaixas" id="numerofaixas" required min="1">
+      </div>
+      <div class="mb-3">
+        <label for="audio" class="form-label">Áudio</label>
+        <input type="file" class="form-control" name="audio" id="audio" accept="audio/*">
       </div>
 
       <?php if (!empty($_SESSION['erro'])): ?>

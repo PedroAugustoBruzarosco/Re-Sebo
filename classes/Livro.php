@@ -17,14 +17,14 @@ class Livro
     $livro = new Livro();
 
     if (!empty($post['id'])) {
-      $livro->id = intval($post['id']);
+      $livro->id = (string)$post['id'];
     }
-    $livro->nome = trim($post['nome']);
-    $livro->autor = trim($post['autor']);
-    $livro->ano = intval($post['ano']);
-    $livro->qtd = intval($post['qtd']);
-    $livro->numeropaginas = intval($post['numeropaginas']);
-    $livro->editora = trim($post['editora']);
+    $livro->nome = $post['nome'];
+    $livro->autor = $post['autor'];
+    $livro->editora = $post['editora'];
+    $livro->ano = (int)$post['ano'];
+    $livro->qtd = (int)$post['qtd'];
+    $livro->numeropaginas = (int)$post['numeropaginas'];
 
     if ($post['imagem']) {
       $livro->imagem = pg_unescape_bytea($post['imagem']);
@@ -45,13 +45,15 @@ class Livro
 
     $dados = pg_fetch_assoc(pg_query_params(Connection::getInstance(), "SELECT * FROM livros WHERE id = $1", array($id)));
 
-    $livro->id = $dados['id'];
+    if (!$dados) return null;
+
+    $livro->id = (string)$dados['id'];
     $livro->nome = $dados['nome'];
     $livro->autor = $dados['autor'];
-    $livro->ano = $dados['ano'];
-    $livro->qtd = $dados['qtd'];
-    $livro->numeropaginas = $dados['numeropaginas'];
     $livro->editora = $dados['editora'];
+    $livro->ano = (int)$dados['ano'];
+    $livro->qtd = (int)$dados['qtd'];
+    $livro->numeropaginas = (int)$dados['numeropaginas'];
     $livro->imagem = $dados['imagem'];
 
     return $livro;
@@ -66,12 +68,19 @@ class Livro
        ORDER BY nome"
     );
 
-    return pg_fetch_all($resultado) ?: [];
+    $livros = pg_fetch_all($resultado) ?: [];
+
+    foreach ($livros as &$livro) {
+      if ($livro['imagem']) {
+        $livro['imagem'] = pg_unescape_bytea($livro['imagem']);
+      }
+    }
+
+    return $livros;
   }
 
   public function salvar()
   {
-    $imagemEscapada = $this->imagem !== null ? pg_escape_bytea(Connection::getInstance(), $this->imagem) : null;
 
     $sql = "INSERT INTO livros (nome, autor, editora, ano, qtd, numeropaginas, imagem)
         VALUES ($1, $2, $3, $4, $5, $6, $7)";
@@ -86,7 +95,7 @@ class Livro
         $this->ano,
         $this->qtd,
         $this->numeropaginas,
-        $imagemEscapada
+        $this->imagem ? pg_escape_bytea(Connection::getInstance(), $this->imagem) : null
       ]
     );
 
@@ -101,8 +110,6 @@ class Livro
 
   public function atualizar()
   {
-    $imagemEscapada = $this->imagem !== null ? pg_escape_bytea(Connection::getInstance(), $this->imagem) : null;
-
     $sql = "UPDATE livros
             SET nome = $1,
                 autor = $2,
@@ -123,7 +130,7 @@ class Livro
         $this->ano,
         $this->qtd,
         $this->numeropaginas,
-        $imagemEscapada,
+        $this->imagem ? pg_escape_bytea(Connection::getInstance(), $this->imagem) : null,
         $this->id
       ]
     );
