@@ -5,8 +5,6 @@
 -- Dumped from database version 17.4
 -- Dumped by pg_dump version 17.4
 
--- Started on 2025-07-15 10:33:06
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -20,26 +18,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 4 (class 2615 OID 2200)
--- Name: public; Type: SCHEMA; Schema: -; Owner: pg_database_owner
---
-
-CREATE SCHEMA public;
-
-
-ALTER SCHEMA public OWNER TO pg_database_owner;
-
---
--- TOC entry 4910 (class 0 OID 0)
--- Dependencies: 4
--- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
---
-
-COMMENT ON SCHEMA public IS 'standard public schema';
-
-
---
--- TOC entry 219 (class 1259 OID 40963)
 -- Name: usuarios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -58,7 +36,6 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 220 (class 1259 OID 40964)
 -- Name: discos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -67,14 +44,15 @@ CREATE TABLE public.discos (
     nome character varying(50) NOT NULL,
     autor character varying(50) NOT NULL,
     ano integer NOT NULL,
-    qtd integer NOT NULL
+    qtd integer NOT NULL,
+    numerofaixas integer,
+    audio bytea
 );
 
 
 ALTER TABLE public.discos OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 40970)
 -- Name: livros; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -83,14 +61,16 @@ CREATE TABLE public.livros (
     nome character varying(50) NOT NULL,
     autor character varying NOT NULL,
     ano integer NOT NULL,
-    qtd integer NOT NULL
+    qtd integer NOT NULL,
+    editora character varying(255),
+    numeropaginas integer,
+    imagem bytea
 );
 
 
 ALTER TABLE public.livros OWNER TO postgres;
 
 --
--- TOC entry 217 (class 1259 OID 32777)
 -- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -105,7 +85,6 @@ CREATE SEQUENCE public.user_id_seq
 ALTER SEQUENCE public.user_id_seq OWNER TO postgres;
 
 --
--- TOC entry 218 (class 1259 OID 32779)
 -- Name: usuarios; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -121,7 +100,6 @@ CREATE TABLE public.usuarios (
 ALTER TABLE public.usuarios OWNER TO postgres;
 
 --
--- TOC entry 4757 (class 2606 OID 40969)
 -- Name: discos discos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -130,7 +108,6 @@ ALTER TABLE ONLY public.discos
 
 
 --
--- TOC entry 4759 (class 2606 OID 40977)
 -- Name: livros livros_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -139,15 +116,12 @@ ALTER TABLE ONLY public.livros
 
 
 --
--- TOC entry 4755 (class 2606 OID 32785)
 -- Name: usuarios usuarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.usuarios
     ADD CONSTRAINT usuarios_pkey PRIMARY KEY (id);
 
-
--- Completed on 2025-07-15 10:33:06
 
 --
 -- PostgreSQL database dump complete

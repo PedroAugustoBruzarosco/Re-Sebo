@@ -16,7 +16,7 @@ require_once "autoload.php";
   <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
     <h2 class="card-title text-center mb-4">Adicionar Livro</h2>
 
-    <form action="salvalivro.php" method="POST">
+    <form action="salvalivro.php" method="POST" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="nome" class="form-label">Nome:</label>
         <input type="text" class="form-control" name="nome" id="nome" required>
@@ -28,6 +28,11 @@ require_once "autoload.php";
       </div>
 
       <div class="mb-3">
+        <label for="editora" class="form-label">Editora:</label>
+        <input type="text" class="form-control" name="editora" id="editora" required>
+      </div>
+
+      <div class="mb-3">
         <label for="ano" class="form-label">Ano:</label>
         <input type="number" class="form-control" name="ano" id="ano" required min="1">
       </div>
@@ -35,6 +40,16 @@ require_once "autoload.php";
       <div class="mb-3">
         <label for="qtd" class="form-label">Quantidade:</label>
         <input type="number" class="form-control" name="qtd" id="qtd" required min="0">
+      </div>
+
+      <div class="mb-3">
+        <label for="numeropaginas" class="form-label">Número de páginas:</label>
+        <input type="number" class="form-control" name="numeropaginas" id="numeropaginas" required min="1">
+      </div>
+
+      <div class="mb-3">
+        <label for="imagem" class="form-label">Imagem:</label>
+        <input type="file" class="form-control" name="imagem" id="imagem" accept="image/*">
       </div>
 
       <?php if (!empty($_SESSION['erro'])): ?>

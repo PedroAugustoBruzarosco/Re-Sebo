@@ -3,11 +3,7 @@ require_once "autoload.php";
 
 $usuario = trim($_POST['usuario']);
 $senha = trim($_POST['senha']);
-if (empty($usuario) || empty($senha)) {
-    $_SESSION['erro'] = "Preencha todos os campos.";
-    header("location: login.php");
-    exit;
-}
+
 $sql = "SELECT id, nome, senha FROM usuarios WHERE nome = $1";
 $resultado = pg_query_params(Connection::getInstance(), $sql, array($usuario));
 if (pg_num_rows($resultado) === 1) {

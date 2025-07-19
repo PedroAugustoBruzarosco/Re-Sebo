@@ -18,9 +18,9 @@ $livro = Livro::getById($id);
 
   <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
     <h2 class="text-center mb-4">Editar Livro</h2>
-
-    <form action="salvaredicaolivro.php" method="POST">
-      <input type="hidden" name="id" value="<?= $livro->id ?>">
+    <form action="salvaredicaolivro.php" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="id" value="<?= $id ?>">
+      <input type="hidden" name="imagem" value="<?= $livro->imagem ?>">
 
       <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
@@ -35,6 +35,11 @@ $livro = Livro::getById($id);
       </div>
 
       <div class="mb-3">
+        <label for="editora" class="form-label">Editora:</label>
+        <input type="text" class="form-control" name="editora" id="editora" value="<?= $livro->editora ?>" required />
+      </div>
+
+      <div class=" mb-3">
         <label for="ano" class="form-label">Ano</label>
         <input type="number" class="form-control" id="ano" name="ano"
           value="<?= $livro->ano ?>" min="1" required>
@@ -44,6 +49,16 @@ $livro = Livro::getById($id);
         <label for="qtd" class="form-label">Quantidade</label>
         <input type="number" class="form-control" id="qtd" name="qtd"
           value="<?= $livro->qtd ?>" min="0" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="numeropaginas" class="form-label">Número de páginas:</label>
+        <input type="number" class="form-control" name="numeropaginas" id="numeropaginas" value="<?= $livro->numeropaginas ?>" required min="1">
+      </div>
+
+      <div class="mb-3">
+        <label for="imagem" class="form-label">Imagem:</label>
+        <input type="file" class="form-control" name="imagem" id="imagem" accept="image/*">
       </div>
 
       <?php if (!empty($_SESSION['erro'])): ?>

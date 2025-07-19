@@ -4,8 +4,11 @@ class Livro
   public string $id;
   public string $nome;
   public string $autor;
+  public string $editora;
+  public ?string $imagem;
   public int $ano;
   public int $qtd;
+  public int $numeropaginas;
 
   public function __construct() {}
 
@@ -13,13 +16,25 @@ class Livro
   {
     $livro = new Livro();
 
-    if (isset($livro->id)) {
+    if (!empty($post['id'])) {
       $livro->id = intval($post['id']);
     }
     $livro->nome = trim($post['nome']);
     $livro->autor = trim($post['autor']);
     $livro->ano = intval($post['ano']);
     $livro->qtd = intval($post['qtd']);
+    $livro->numeropaginas = intval($post['numeropaginas']);
+    $livro->editora = trim($post['editora']);
+
+    if ($post['imagem']) {
+      $livro->imagem = pg_unescape_bytea($post['imagem']);
+    } else {
+      $livro->imagem = null;
+    }
+
+    if (!empty($_FILES['imagem']['tmp_name'])) {
+      $livro->imagem = file_get_contents($_FILES['imagem']['tmp_name']);
+    }
 
     return $livro;
   }
@@ -35,6 +50,9 @@ class Livro
     $livro->autor = $dados['autor'];
     $livro->ano = $dados['ano'];
     $livro->qtd = $dados['qtd'];
+    $livro->numeropaginas = $dados['numeropaginas'];
+    $livro->editora = $dados['editora'];
+    $livro->imagem = $dados['imagem'];
 
     return $livro;
   }
@@ -43,16 +61,34 @@ class Livro
   {
     $resultado = pg_query(
       Connection::getInstance(),
-      "SELECT id, nome, ano, autor, qtd FROM livros ORDER BY nome"
+      "SELECT id, nome, autor, editora, ano, qtd, numeropaginas, imagem
+       FROM livros
+       ORDER BY nome"
     );
 
     return pg_fetch_all($resultado) ?: [];
   }
 
-  public function  salvar()
+  public function salvar()
   {
-    $sql = "INSERT INTO livros (nome, autor, ano, qtd) VALUES ($1, $2, $3, $4)";
-    $resultado = pg_query_params(Connection::getInstance(), $sql, array($this->nome, $this->autor, $this->ano, $this->qtd));
+    $imagemEscapada = $this->imagem !== null ? pg_escape_bytea(Connection::getInstance(), $this->imagem) : null;
+
+    $sql = "INSERT INTO livros (nome, autor, editora, ano, qtd, numeropaginas, imagem)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)";
+
+    $resultado = pg_query_params(
+      Connection::getInstance(),
+      $sql,
+      [
+        $this->nome,
+        $this->autor,
+        $this->editora,
+        $this->ano,
+        $this->qtd,
+        $this->numeropaginas,
+        $imagemEscapada
+      ]
+    );
 
     if ($resultado) {
       $_SESSION['erro'] = null;
@@ -65,8 +101,32 @@ class Livro
 
   public function atualizar()
   {
-    $sql = "UPDATE livros SET nome = $1, autor = $2, ano = $3, qtd = $4 WHERE id = $5";
-    $resultado = pg_query_params(Connection::getInstance(), $sql, [$this->nome, $this->autor, $this->ano, $this->qtd, $this->id]);
+    $imagemEscapada = $this->imagem !== null ? pg_escape_bytea(Connection::getInstance(), $this->imagem) : null;
+
+    $sql = "UPDATE livros
+            SET nome = $1,
+                autor = $2,
+                editora = $3,
+                ano = $4,
+                qtd = $5,
+                numeropaginas = $6,
+                imagem = $7
+            WHERE id = $8";
+
+    $resultado = pg_query_params(
+      Connection::getInstance(),
+      $sql,
+      [
+        $this->nome,
+        $this->autor,
+        $this->editora,
+        $this->ano,
+        $this->qtd,
+        $this->numeropaginas,
+        $imagemEscapada,
+        $this->id
+      ]
+    );
 
     if ($resultado) {
       $_SESSION['erro'] = null;

@@ -22,7 +22,8 @@ require_once "autoload.php";
         <img src="assets/book.png" alt="Logo" style="width: 40px;" class="me-2">
         <h1 class="text-white h4 mb-0">Re-Sebo</h1>
       </div>
-      <a class="btn btn-light btn-sm" href="paginainicial.php">Sair</a>
+      <h1 class="text-white h4 mb-0">Olá <?= $_SESSION["usuario"] ?></h1>
+      <a class="btn btn-light btn-sm" href="logout.php">Sair</a>
     </div>
   </header>
 
@@ -38,21 +39,32 @@ require_once "autoload.php";
               <table class="table table-striped table-hover" id="tabelaLivros">
                 <thead class="table-primary">
                   <tr>
+                    <th>Imagem</th>
                     <th>Nome</th>
                     <th>Ano</th>
                     <th>Autor</th>
+                    <th>Editora</th>
                     <th>Qtd</th>
-                    <th style="width: 120px; white-space: nowrap;">Ações</th>
+                    <th>Núm. Páginas</th>
+                    <th>Ações</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php foreach (Livro::listar() as $livro): ?>
                     <tr>
+                      <td>
+                        <?= !empty($livro['imagem'])
+                          ? '<img width=80 height=80 src="data:image/png;base64,' . base64_encode(pg_unescape_bytea($livro['imagem'])) . '">'
+                          : ''
+                        ?>
+                      </td>
                       <td><?= $livro['nome'] ?></td>
                       <td><?= $livro['ano'] ?></td>
                       <td><?= $livro['autor'] ?></td>
+                      <td><?= $livro['editora'] ?></td>
                       <td><?= $livro['qtd'] ?></td>
-                      <td style="white-space: nowrap; display: flex; gap: 0.5rem;">
+                      <td><?= $livro['numeropaginas'] ?></td>
+                      <td>
                         <a href="editarlivro.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-secondary">
                           <i class="bi bi-pencil"></i> <span class="btn-text">Editar</span>
                         </a>
