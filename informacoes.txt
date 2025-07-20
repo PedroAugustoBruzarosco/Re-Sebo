@@ -1,0 +1,36 @@
+● ambiente(s) de desenvolvimento utilizado(s);
+VSCode e Neovim
+
+● servidor web;
+Servidor embutito do PHP por meio do comando php -S localhost:8080
+
+● sistema gerenciador de banco de dados;
+Postgres
+
+● framework(s);
+Nenhum
+
+● biblioteca(s):
+Bootstrap
+
+● instruções de instalação;
+
+Com Docker:
+Rode docker build -t php .
+
+Sem Docker:
+Instale o php
+Instale e configure o SGBD Postgres
+Crie um banco de dados novo com o comando: CREATE DATABASE Sebo;
+Importe o schema SQL com o comando: \i init.sql (Voce deve estar na pasta do projeto)
+Atualize o arquivo classe/Connection.php com suas credenciais do banco
+Rode o servidor com php -d upload_max_filesize=50M -d post_max_size=50M -S 0.0.0.0:8080
+O sistema já estará disponivel na URL: http://127.0.0.1:8080
+
+● instruções de execução;
+
+Com Docker:
+Rode docker run -p 80:80 php
+O sistema já estará disponivel na URL: http://127.0.0.1/
+
+Sem Docker:
